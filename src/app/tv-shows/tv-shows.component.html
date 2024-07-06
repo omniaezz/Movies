@@ -1,0 +1,41 @@
+<div class="row py-5">
+    <div class="col-md-4">
+        <div class="caption mt-4">
+            <div class="brdr w-25 mb-5"></div>
+            <h2>Trending</h2>
+            <h2>Tvs</h2>
+            <h2>To Watch Now</h2>
+            <span>Most Watched Tvs By Weeks</span>
+            <div class="brdr w-100 mt-5"></div>
+
+        </div>
+    </div>
+
+    <div class="col-md-2" *ngFor="let item of trendingTvs">
+        <a routerLink="/details/{{item.id}}/tv">
+            <div class="movie my-3 position-relative">
+                <img [src]="baseUrl+item.poster_path" class="img-fluid" alt="">
+                <h2 class="h6 py-2">{{item.name}}</h2>
+                <div class="vote position-absolute top-0 end-0 p-2 text-white">{{item.vote_average.toFixed(1)}}</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center my-3">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a [ngClass]="{'disabled': currentPage == 1}" (click)="getPrevTv()" class="page-link" aria-label="Previous">
+              <span class="text-white" aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li (click)="getTvs(page)" [ngClass]="{'active': page === currentPage}" *ngFor="let page of pagesNumber" class="page-item"><a class="page-link">{{page}}</a></li>
+          <li class="page-item">
+            <a [ngClass]="{'disabled': currentPage == 50}" (click)="getNextTv()" class="page-link" aria-label="Next">
+              <span class="text-white" aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+</div>

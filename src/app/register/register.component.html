@@ -1,0 +1,58 @@
+<div class="Register-from m-auto py-5">
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+    <h1>Register Form</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+        <div class="group-input py-2">
+            <label for="">First Name: </label>
+            <input formControlName="FirstName" class="form-control bg-white my-2" type="text">
+            <div *ngIf="registerForm.controls['FirstName'].invalid && registerForm.controls['FirstName'].touched" class="text-danger py-1">
+            <p *ngIf="registerForm.controls['FirstName'].errors?.['required']">firstname is required</p>
+            <p *ngIf="registerForm.controls['FirstName'].errors?.['minlength']">firstname min_length is 3 </p>
+            <p *ngIf="registerForm.controls['FirstName'].errors?.['maxlength']">firstname max_length is 10</p>
+            </div>
+        </div>
+        <div class="group-input py-2">
+            <label for="">Last Name: </label>
+            <input formControlName="LastName" class="form-control bg-white my-2" type="text">
+            <div *ngIf="registerForm.controls['LastName'].invalid && registerForm.controls['LastName'].touched" class="text-danger py-1">
+                <p *ngIf="registerForm.controls['LastName'].errors?.['required']">lastname is required</p>
+                <p *ngIf="registerForm.controls['LastName'].errors?.['minlength']">lastname min_length is 3 </p>
+                <p *ngIf="registerForm.controls['LastName'].errors?.['maxlength']">lastname max_length is 10</p>
+            </div>
+        </div>
+        <div class="group-input py-2">
+            <label for="">Age: </label>
+            <input  formControlName="Age" class="form-control bg-white my-2" type="number">
+            <div *ngIf="registerForm.controls['Age'].invalid && registerForm.controls['Age'].touched" class="text-danger py-1">
+                <p *ngIf="registerForm.controls['Age'].errors?.['required']">Age is required</p>
+                <p *ngIf="registerForm.controls['Age'].errors?.['min']">min Age is 10 </p>
+                <p *ngIf="registerForm.controls['Age'].errors?.['max']">max Age is 80</p>
+            </div>
+        </div>
+        <div class="group-input py-2">
+            <label for="">Email: </label>
+            <input formControlName="Email" class="form-control bg-white my-2" type="Email">
+            <div *ngIf="registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched" class="text-danger py-1">
+                <p *ngIf="registerForm.controls['Email'].errors?.['required']">Email is required</p>
+                <p *ngIf="registerForm.controls['Email'].errors?.['Email']">Email should be valid </p>
+            </div>
+        </div>
+        <div class="group-input py-2">
+            <label for="">Password: </label>
+            <input  formControlName="Password" class="form-control bg-white my-2" type="Password">
+            <div *ngIf="registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched" class="text-danger py-1">
+                <p *ngIf="registerForm.controls['Password'].errors?.['required']">Password is required</p>
+                <p *ngIf="registerForm.controls['Password'].errors?.['pattern']">Password should be valid </p>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <button [disabled]="registerForm.invalid" class="btn mt-2 px-5 py-2 input-mine">
+                <span *ngIf="!isLoading" >Register</span>
+                <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+            </button>
+        </div>
+        
+    </form>
+</div>

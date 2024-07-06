@@ -1,0 +1,29 @@
+
+.brdr{
+    height:1px;
+    background-color: #a8a8a83d;
+}
+
+span{
+    color: #f8dbdb3d;
+}
+
+.vote{
+    background-color: var(--light-bg);
+}
+
+nav ul li a{
+    background-color: var(--light-bg) !important;
+    color: white;
+}
+
+nav{
+    cursor: pointer;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: white !important; 
+    border-color: white;    
+    color: #007bff;  
+}
+  

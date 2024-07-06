@@ -1,0 +1,30 @@
+<div class="login-from m-auto py-5">
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    <h1>Login Form</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()">
+        <div class="group-input py-2">
+            <label for="">Email: </label>
+            <input formControlName="Email" class="form-control bg-white my-2" type="Email">
+            <div *ngIf="loginForm.controls['Email'].invalid && loginForm.controls['Email'].touched" class="text-danger py-1">
+                <p *ngIf="loginForm.controls['Email'].errors?.['required']">Email is required</p>
+                <p *ngIf="loginForm.controls['Email'].errors?.['Email']">Email should be valid </p>
+            </div>
+        </div>
+        <div class="group-input py-2">
+            <label for="">Password: </label>
+            <input  formControlName="Password" class="form-control bg-white my-2" type="Password">
+            <div *ngIf="loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched" class="text-danger py-1">
+                <p *ngIf="loginForm.controls['Password'].errors?.['required']">Password is required</p>
+                <p *ngIf="loginForm.controls['Password'].errors?.['pattern']">Password should be valid </p>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <button [disabled]="loginForm.invalid" class="btn mt-2 px-5 py-2 input-mine">
+                <span *ngIf="!isLoading" >Login</span>
+                <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+            </button>
+        </div>
+        
+    </form>
+</div>
