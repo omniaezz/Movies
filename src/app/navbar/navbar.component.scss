@@ -1,11 +1,18 @@
 .navbar{
-    background-color: rgba(36,186,239,.6);
+    background-color: rgb(36,186,239);
 }
 
 .social-icons i{
-    margin: 0 10px;
+    margin: 0 1rem;
 }
 
-input{
-    padding-right: 30px;
+
+@media (max-width:991px){
+    .navbar{
+        text-align: center;
+    }
+    
+    .navbar-nav li,.social-icons{
+        margin-top: 0.8rem;
+    }
 }

@@ -3,9 +3,9 @@
     color: #949cb0;
 }
 
-span{
+.genress span{
     background-color: rgba(36,186,239,.6);
-    margin-right:8px;
+    margin-right:0.3rem;
     padding:10px;
     border-radius: 5px;
     color: #d0d9f0;
@@ -19,3 +19,47 @@ span{
 .similar{
     cursor: pointer;
 }
+
+.content{
+    background-color:#1c2336;
+    padding: 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.movie img{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.movie span{
+    color: var(--light-bg);
+}
+
+@media (max-width:576px){
+    .detail{
+        text-align: center;
+    }
+    .row{
+        width: 100%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px){
+    .movie h2,.movie p{
+        font-size: 0.7rem;
+    }
+    .movie span{
+        font-size: 0.6rem;
+    }
+    .img-details img{
+       width: 85%;
+    }
+    .detail{
+        text-align: center;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 600px) {
+    .container {
+      max-width: 700px !important;
+    }
+  }

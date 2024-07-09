@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap');
-
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import 'ngx-toastr/toastr';
 :root{
     --bg-main:#131722;
     --light-bg:rgba(36,186,239,.9);
@@ -29,3 +31,30 @@ a,a:hover{
     color: var(--text-color);
     border: 1px solid var(--border-color);
 }
+
+
+// .owl-carousel .owl-nav {
+//     position: absolute;
+//     top: 50%;
+//     width: 100%;
+//     // display: flex;
+//     // justify-content: space-around;
+//     // transform: translateY(-50%);
+// }
+  
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-prev:hover,
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-nav .owl-next:hover
+{
+    background: var(--light-bg);
+    border: none;
+    font-size: 2rem;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-top: 1rem;
+}
+    
+
+

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -17,12 +17,16 @@ import { TvShowsComponent } from './tv-shows/tv-shows.component';
 import {HttpClientModule} from '@angular/common/http';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SearchPipe } from './search.pipe'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
@@ -38,7 +42,11 @@ import { SearchPipe } from './search.pipe'
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    CarouselModule,
+    ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [
     provideClientHydration()

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../movies.service';
-import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-movies',
@@ -14,15 +14,22 @@ export class MoviesComponent implements OnInit{
   totalPages: number = 50; 
   pageSize: number = 5; 
   baseUrl:string = "https://image.tmdb.org/t/p/original";
-  constructor(private _MoviesService:MoviesService){}
+  constructor(private _MoviesService:MoviesService,private _NgxSpinnerService:NgxSpinnerService){}
   
   getMovies(pageNumber:number){
+    this._NgxSpinnerService.show();
     this.currentPage = pageNumber;
-    localStorage.setItem('pageNumber',JSON.stringify(pageNumber));
-    this._MoviesService.getTrendingPaginated('movie',pageNumber).subscribe((response)=>{
+    localStorage.setItem('Moviepage',JSON.stringify(pageNumber));
+    this._MoviesService.getTrendingPaginated('movie',pageNumber).subscribe({
+      next:(response)=>{
        this.trendingMovies = response.results;
+       this.updatePagination();
+       setTimeout(() => {
+        this._NgxSpinnerService.hide();
+       }, 1000)
+      }
     })
-    this.updatePagination();
+    
   }
   
 
@@ -47,7 +54,7 @@ export class MoviesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const savedPage = localStorage.getItem('pageNumber');
+    const savedPage = localStorage.getItem('Moviepage');
     this.currentPage = savedPage ? parseInt(savedPage) : 1;
     this.getMovies(this.currentPage);
     this.updatePagination();

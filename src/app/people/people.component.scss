@@ -5,3 +5,21 @@
 span{
     color: #f8dbdb3d;
 }
+
+.content{
+    background-color:#1c2336;
+    padding: 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+img{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+@media (min-width: 576px) and (max-width: 991px){
+    h2{
+        font-size: 0.7rem;
+    }
+}

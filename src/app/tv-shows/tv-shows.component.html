@@ -1,9 +1,18 @@
-<div class="row py-5">
-    <div class="col-md-4">
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.5)"
+  size="medium"
+  color="rgba(36,186,239,.8)"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: var(--light-bg)">Loading...</p>
+</ngx-spinner>
+
+<div class="row py-5 mt-5">
+    <div class="col-sm-4 col-md-3">
         <div class="caption mt-4">
             <div class="brdr w-25 mb-5"></div>
             <h2>Trending</h2>
-            <h2>Tvs</h2>
+            <h2>TvShows</h2>
             <h2>To Watch Now</h2>
             <span>Most Watched Tvs By Weeks</span>
             <div class="brdr w-100 mt-5"></div>
@@ -11,16 +20,19 @@
         </div>
     </div>
 
-    <div class="col-md-2" *ngFor="let item of trendingTvs">
-        <a routerLink="/details/{{item.id}}/tv">
-            <div class="movie my-3 position-relative">
-                <img [src]="baseUrl+item.poster_path" class="img-fluid" alt="">
-                <h2 class="h6 py-2">{{item.name}}</h2>
-                <div class="vote position-absolute top-0 end-0 p-2 text-white">{{item.vote_average.toFixed(1)}}</div>
-            </div>
-        </a>
-    </div>
+    <div class="col-sm-4 col-md-3" *ngFor="let item of trendingTvs">
+      <div class="movie my-3">
+          <img [src]="baseUrl+item.poster_path" class="img-fluid" alt="">
+          <div class="content">
+              <h2 class="h6 py-2">{{item.name}}</h2>
+              <p>Rate : <span>{{item.vote_average.toFixed(2)}}</span></p>
+              <button routerLink="/details/{{item.id}}/tv" class="btn">Show Details</button>
+          </div>
+      </div>
+  </div>
+
 </div>
+
 
 <div class="d-flex justify-content-center my-3">
     <nav aria-label="Page navigation example">

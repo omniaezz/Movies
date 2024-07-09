@@ -1,17 +1,26 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.5)"
+  size="medium"
+  color="rgba(36,186,239,.8)"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: var(--light-bg)">Loading...</p>
+</ngx-spinner>
 
-<div class="row py-5 m-auto">
-    <div class="col-md-3">
+<div class="row py-5 m-auto mt-5 detail">
+    <div class="mt-5"></div>
+    <div class="col-lg-3">
        <div class="img-details">
           <img [src]="baseUrl+movieDetails.poster_path" class="img-fluid" alt="">
        </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-lg-9">
        <div class="movie-content mt-2">
             <h2 class="h4 py-3">{{Title}}</h2>
             <p>{{movieDetails.tagline}}</p>
             <div class="genress py-4">
-                <span *ngFor="let item of movieDetails.genres">{{item.name}}</span>
+                <span class="d-inline-block mt-2" *ngFor="let item of movieDetails.genres">{{item.name}}</span>
             </div>
             <h6 class="py-2">vote : {{movieDetails.vote_average}}</h6>
             <h6 class="py-2">popularity : {{movieDetails.popularity}}</h6>
@@ -24,7 +33,7 @@
 
 
 <div class="row py-5 m-auto">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="caption mt-4">
             <div class="brdr w-25 mb-5"></div>
             <h2>similar</h2>
@@ -36,11 +45,16 @@
         </div>
     </div>
 
-    <div class="col-md-2 similar" *ngFor="let item of similarMovies">
-        <div *ngIf="item.poster_path !=null" (click)="getSimilarAndDetails(item.id,mediaType)" class="movie my-3">
-            <img [src]="baseUrl+item.poster_path" class="img-fluid" alt="">
-            <h2 *ngIf="mediaType == 'movie'"  class="h6 py-2">{{item.title}}</h2>
-            <h2 *ngIf="mediaType == 'tv'" class="h6 py-2">{{item.name}}</h2>
-        </div>
+    <div class="col-sm-4 col-md-3 similar" *ngFor="let item of similarMovies">
+        <a routerLink="/details/{{item.id}}/movie">
+            <div *ngIf="item.poster_path !=null" (click)="getSimilarAndDetails(item.id,mediaType)" class="movie my-3">
+                <img [src]="baseUrl+item.poster_path" class="img-fluid" alt="">
+                <div class="content">
+                    <h2 *ngIf="mediaType == 'movie'"  class="h6 py-2">{{item.title}}</h2>
+                    <h2 *ngIf="mediaType == 'tv'" class="h6 py-2">{{item.name}}</h2>
+                    <p>Rate : <span>{{item.vote_average.toFixed(2)}}</span></p>
+                </div>
+            </div>
+        </a>   
     </div>
 </div>

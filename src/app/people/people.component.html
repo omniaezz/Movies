@@ -1,5 +1,14 @@
-<div class="row py-5">
-    <div class="col-md-4">
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.5)"
+  size="medium"
+  color="rgba(36,186,239,.8)"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: var(--light-bg)">Loading...</p>
+</ngx-spinner>
+
+<div class="row py-5 mt-5">
+    <div class="col-sm-4 col-md-3">
         <div class="caption mt-4">
             <div class="brdr w-25 mb-5"></div>
             <h2>Trending</h2>
@@ -10,10 +19,12 @@
         </div>
     </div>
 
-    <div class="col-md-2" *ngFor="let item of trendingPersons">
-        <div class="movie my-3">
+    <div class="col-sm-4 col-md-3" *ngFor="let item of trendingPersons">
+        <div class="my-3">
             <img [src]="baseUrl+item.profile_path" class="img-fluid" alt="">
-            <h2 class="h6 py-2">{{item.name}}</h2>
+            <div class="content">
+                <h2 class="h6 py-2">{{item.name}}</h2>
+            </div>
         </div>
     </div>
 </div>

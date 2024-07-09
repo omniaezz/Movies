@@ -2,9 +2,9 @@
     height:1px;
     background-color: #a8a8a83d;
 }
-span{
-    color: #f8dbdb3d;
-}
+// span{
+//     color: #f8dbdb3d;
+// }
 
 .vote{
     background-color: var(--light-bg);
@@ -23,4 +23,33 @@ nav{
     background-color: white !important; 
     border-color: white;    
     color: #007bff;  
+}
+
+span,button{
+    color: var(--light-bg);
+}
+button,button:hover{
+    background-color: transparent;
+    border-color: var(--light-bg);
+    color:var((--light-bg));
+}
+.content{
+    background-color:#1c2336;
+    padding: 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.movie img{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+@media (min-width: 576px) and (max-width: 991px){
+    h2,p{
+        font-size: 0.7rem;
+    }
+    button,span{
+        font-size: 0.6rem;
+    }
 }

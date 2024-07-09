@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from '../movies.service';
-import { response } from 'express';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -15,20 +15,28 @@ export class MovieDetailsComponent implements OnInit{
   movieDetails:any={};
   mediaType:string='';
   baseUrl:string = "https://image.tmdb.org/t/p/original";
-  constructor(private _ActivatedRoute:ActivatedRoute,private _MoviesService:MoviesService){}
+  constructor(private _ActivatedRoute:ActivatedRoute,
+              private _MoviesService:MoviesService,
+              private _NgxSpinnerService:NgxSpinnerService
+            ){}
   getMovieDetails(id:number,media:string){
+    this._NgxSpinnerService.show();
     this._MoviesService.getTrendingDetails(id,media).subscribe({
-      
       next:(response)=>{
-        console.log(response);
         this.movieDetails = response;
         if(media =='movie'){
           this.Title = this.movieDetails.title;  
          }else{
           this.Title = this.movieDetails.original_name;
          }
-
          this.mediaType = media;
+         setTimeout(() => {
+          this._NgxSpinnerService.hide();
+         }, 1000);
+         
+      },
+      error:()=>{
+        this._NgxSpinnerService.hide();
       }
     })
   }

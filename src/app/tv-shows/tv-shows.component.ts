@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../movies.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-tv-shows',
   templateUrl: './tv-shows.component.html',
@@ -13,12 +13,19 @@ export class TvShowsComponent implements OnInit{
   totalPages: number = 50; 
   pageSize: number = 5; 
   baseUrl:string = "https://image.tmdb.org/t/p/original";
-  constructor(private _MoviesService:MoviesService){}
+  constructor(private _MoviesService:MoviesService,private _NgxSpinnerService:NgxSpinnerService){}
   
   getTvs(pageNumber:number){
+    localStorage.setItem('Tvpage',JSON.stringify(pageNumber));
     this.currentPage = pageNumber;
-    this._MoviesService.getTrendingPaginated('tv',pageNumber).subscribe((response)=>{
+    this._NgxSpinnerService.show()
+    this._MoviesService.getTrendingPaginated('tv',pageNumber).subscribe({
+      next:(response)=>{
        this.trendingTvs = response.results;
+       setTimeout(() => {
+        this._NgxSpinnerService.hide();
+       }, 1000)
+      }
     })
     this.updatePagination();
   }
@@ -44,7 +51,10 @@ export class TvShowsComponent implements OnInit{
  }
 
  ngOnInit(): void {
-   this.getTvs(1);
-   this.updatePagination();
+  const savedPage = localStorage.getItem('Tvpage');
+  this.currentPage = savedPage ? parseInt(savedPage) : 1;
+  this.getTvs(this.currentPage);
+  this.updatePagination();
   }
+
 }

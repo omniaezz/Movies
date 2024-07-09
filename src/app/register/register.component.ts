@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,Validators} from '@angular/forms'
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -21,17 +21,20 @@ export class RegisterComponent implements OnInit {
   })
 
 
-  constructor(private _AuthService:AuthService,private _Router:Router) {}
+  constructor(private _AuthService:AuthService,private _Router:Router,
+              private _ToastrService:ToastrService) {}
 
   submitRegisterForm(){
     this.registerForm.value.Id='';
     this.isLoading = true;
     this._AuthService.signUp(this.registerForm.value).subscribe({
       next:(response)=>{
+        this._ToastrService.success('Hello!', 'Registered Successfully!');
         this.isLoading=false;
         this._Router.navigate(['/login'])
       },error:(response)=>{
-        this.error = response.error.message;
+        this.error = "Data Isn't Valid ";;
+        this._ToastrService.error(this.error , 'oops! Faild To Register');
         this.isLoading=false;
       }
     })
